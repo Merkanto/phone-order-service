@@ -19,11 +19,12 @@ public class PhoneOrderLine extends BaseEntity {
 
     @Builder
     public PhoneOrderLine(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate,
-                          PhoneOrder phoneOrder, UUID phoneId, Integer orderQuantity,
+                          PhoneOrder phoneOrder, UUID phoneId, String imei, Integer orderQuantity,
                           Integer quantityAllocated) {
         super(id, version, createdDate, lastModifiedDate);
         this.phoneOrder = phoneOrder;
         this.phoneId = phoneId;
+        this.imei = imei;
         this.orderQuantity = orderQuantity;
         this.quantityAllocated = quantityAllocated;
     }
@@ -32,6 +33,7 @@ public class PhoneOrderLine extends BaseEntity {
     private PhoneOrder phoneOrder;
 
     private UUID phoneId;
+    private String imei;
     private Integer orderQuantity = 0;
     private Integer quantityAllocated = 0;
 }
