@@ -5,8 +5,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import phone.phoneorderservice.services.PhoneOrderService;
-import phone.phoneorderservice.web.model.PhoneOrderDto;
-import phone.phoneorderservice.web.model.PhoneOrderPagedList;
+import phone.model.PhoneOrderDto;
+import phone.model.PhoneOrderPagedList;
 
 import java.util.UUID;
 

@@ -4,7 +4,7 @@ package phone.phoneorderservice.web.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import phone.phoneorderservice.domain.PhoneOrder;
-import phone.phoneorderservice.web.model.PhoneOrderDto;
+import phone.model.PhoneOrderDto;
 
 @Mapper(uses = {DateMapper.class, PhoneOrderLineMapper.class})
 public interface PhoneOrderMapper {

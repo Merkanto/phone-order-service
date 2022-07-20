@@ -4,8 +4,8 @@ package phone.phoneorderservice.services;
 
 
 import org.springframework.data.domain.Pageable;
-import phone.phoneorderservice.web.model.PhoneOrderDto;
-import phone.phoneorderservice.web.model.PhoneOrderPagedList;
+import phone.model.PhoneOrderDto;
+import phone.model.PhoneOrderPagedList;
 
 import java.util.UUID;
 

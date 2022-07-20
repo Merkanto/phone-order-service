@@ -8,8 +8,8 @@ import phone.phoneorderservice.bootstrap.PhoneOrderBootStrap;
 import phone.phoneorderservice.domain.Customer;
 import phone.phoneorderservice.repositories.CustomerRepository;
 import phone.phoneorderservice.repositories.PhoneOrderRepository;
-import phone.phoneorderservice.web.model.PhoneOrderDto;
-import phone.phoneorderservice.web.model.PhoneOrderLineDto;
+import phone.model.PhoneOrderDto;
+import phone.model.PhoneOrderLineDto;
 
 import java.util.ArrayList;
 import java.util.List;

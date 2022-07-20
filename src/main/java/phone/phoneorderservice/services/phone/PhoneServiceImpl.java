@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import phone.phoneorderservice.web.model.PhoneDto;
+import phone.model.PhoneDto;
 
 import java.util.Optional;
 import java.util.UUID;

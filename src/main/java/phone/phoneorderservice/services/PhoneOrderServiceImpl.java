@@ -15,8 +15,8 @@ import phone.phoneorderservice.domain.PhoneOrder;
 import phone.phoneorderservice.repositories.CustomerRepository;
 import phone.phoneorderservice.repositories.PhoneOrderRepository;
 import phone.phoneorderservice.web.mappers.PhoneOrderMapper;
-import phone.phoneorderservice.web.model.PhoneOrderDto;
-import phone.phoneorderservice.web.model.PhoneOrderPagedList;
+import phone.model.PhoneOrderDto;
+import phone.model.PhoneOrderPagedList;
 
 import java.util.Optional;
 import java.util.UUID;

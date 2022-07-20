@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import phone.phoneorderservice.domain.PhoneOrderLine;
 import phone.phoneorderservice.services.phone.PhoneService;
-import phone.phoneorderservice.web.model.PhoneDto;
-import phone.phoneorderservice.web.model.PhoneOrderLineDto;
+import phone.model.PhoneDto;
+import phone.model.PhoneOrderLineDto;
 
 import java.util.Optional;
 

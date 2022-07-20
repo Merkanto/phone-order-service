@@ -1,6 +1,6 @@
 package phone.phoneorderservice.services.phone;
 
-import phone.phoneorderservice.web.model.PhoneDto;
+import phone.model.PhoneDto;
 
 import java.util.Optional;
 import java.util.UUID;
