@@ -38,4 +38,6 @@ public class PhoneOrderLineDto {
     private UUID phoneId;
     private Integer orderQuantity = 0;
     private BigDecimal price;
+
+    private Integer quantityAllocated;
 }
