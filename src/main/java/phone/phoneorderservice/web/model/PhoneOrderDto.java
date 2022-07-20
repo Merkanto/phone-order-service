@@ -33,7 +33,7 @@ public class PhoneOrderDto extends BaseItem {
 
     @Builder
     public PhoneOrderDto(UUID id, Integer version, OffsetDateTime createdDate, OffsetDateTime lastModifiedDate, UUID customerId, List<PhoneOrderLineDto> phoneOrderLines,
-                         OrderStatusEnum orderStatus, String orderStatusCallbackUrl, String customerRef) {
+                         String orderStatus, String orderStatusCallbackUrl, String customerRef) {
         super(id, version, createdDate, lastModifiedDate);
         this.customerId = customerId;
         this.phoneOrderLines = phoneOrderLines;
@@ -45,6 +45,6 @@ public class PhoneOrderDto extends BaseItem {
     private UUID customerId;
     private String customerRef;
     private List<PhoneOrderLineDto> phoneOrderLines;
-    private OrderStatusEnum orderStatus;
+    private String orderStatus;
     private String orderStatusCallbackUrl;
 }
