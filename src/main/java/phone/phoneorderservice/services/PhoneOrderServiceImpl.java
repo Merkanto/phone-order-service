@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import phone.phoneorderservice.domain.Customer;
-import phone.phoneorderservice.domain.OrderStatusEnum;
+import phone.phoneorderservice.domain.PhoneOrderStatusEnum;
 import phone.phoneorderservice.domain.PhoneOrder;
 import phone.phoneorderservice.repositories.CustomerRepository;
 import phone.phoneorderservice.repositories.PhoneOrderRepository;
@@ -69,7 +69,7 @@ public class PhoneOrderServiceImpl implements PhoneOrderService {
             PhoneOrder phoneOrder = phoneOrderMapper.dtoToPhoneOrder(phoneOrderDto);
             phoneOrder.setId(null); //should not be set by outside client
             phoneOrder.setCustomer(customerOptional.get());
-            phoneOrder.setOrderStatus(OrderStatusEnum.NEW);
+            phoneOrder.setOrderStatus(PhoneOrderStatusEnum.NEW);
 
             phoneOrder.getPhoneOrderLines().forEach(line -> line.setPhoneOrder(phoneOrder));
 
@@ -94,7 +94,7 @@ public class PhoneOrderServiceImpl implements PhoneOrderService {
     @Override
     public void pickupOrder(UUID customerId, UUID orderId) {
         PhoneOrder phoneOrder = getOrder(customerId, orderId);
-        phoneOrder.setOrderStatus(OrderStatusEnum.PICKED_UP);
+        phoneOrder.setOrderStatus(PhoneOrderStatusEnum.PICKED_UP);
 
         phoneOrderRepository.save(phoneOrder);
     }
