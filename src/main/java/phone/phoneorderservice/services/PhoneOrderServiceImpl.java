@@ -2,21 +2,21 @@
 
 package phone.phoneorderservice.services;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import phone.model.PhoneOrderDto;
+import phone.model.PhoneOrderPagedList;
 import phone.phoneorderservice.domain.Customer;
-import phone.phoneorderservice.domain.PhoneOrderStatusEnum;
 import phone.phoneorderservice.domain.PhoneOrder;
+import phone.phoneorderservice.domain.PhoneOrderStatusEnum;
 import phone.phoneorderservice.repositories.CustomerRepository;
 import phone.phoneorderservice.repositories.PhoneOrderRepository;
 import phone.phoneorderservice.web.mappers.PhoneOrderMapper;
-import phone.model.PhoneOrderDto;
-import phone.model.PhoneOrderPagedList;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -24,21 +24,13 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class PhoneOrderServiceImpl implements PhoneOrderService {
 
     private final PhoneOrderRepository phoneOrderRepository;
     private final CustomerRepository customerRepository;
     private final PhoneOrderMapper phoneOrderMapper;
-    private final ApplicationEventPublisher publisher;
-
-    public PhoneOrderServiceImpl(PhoneOrderRepository phoneOrderRepository,
-                                 CustomerRepository customerRepository,
-                                 PhoneOrderMapper phoneOrderMapper, ApplicationEventPublisher publisher) {
-        this.phoneOrderRepository = phoneOrderRepository;
-        this.customerRepository = customerRepository;
-        this.phoneOrderMapper = phoneOrderMapper;
-        this.publisher = publisher;
-    }
+    private final PhoneOrderManager phoneOrderManager;
 
     @Override
     public PhoneOrderPagedList listOrders(UUID customerId, Pageable pageable) {
@@ -73,12 +65,9 @@ public class PhoneOrderServiceImpl implements PhoneOrderService {
 
             phoneOrder.getPhoneOrderLines().forEach(line -> line.setPhoneOrder(phoneOrder));
 
-            PhoneOrder savedPhoneOrder = phoneOrderRepository.saveAndFlush(phoneOrder);
+            PhoneOrder savedPhoneOrder = phoneOrderManager.newPhoneOrder(phoneOrder);
 
             log.debug("Saved Phone Order: " + phoneOrder.getId());
-
-            //todo impl
-            //  publisher.publishEvent(new NewPhoneOrderEvent(savedPhoneOrder));
 
             return phoneOrderMapper.phoneOrderToDto(savedPhoneOrder);
         }
@@ -93,10 +82,7 @@ public class PhoneOrderServiceImpl implements PhoneOrderService {
 
     @Override
     public void pickupOrder(UUID customerId, UUID orderId) {
-        PhoneOrder phoneOrder = getOrder(customerId, orderId);
-        phoneOrder.setOrderStatus(PhoneOrderStatusEnum.PICKED_UP);
-
-        phoneOrderRepository.save(phoneOrder);
+        phoneOrderManager.phoneOrderPickedUp(orderId);
     }
 
     private PhoneOrder getOrder(UUID customerId, UUID orderId) {
